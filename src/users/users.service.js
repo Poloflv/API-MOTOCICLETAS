@@ -9,7 +9,15 @@ export class UserService {
                 id,
             }
         })
+    }
 
+    async findOneUserByEmail(email){
+        return await User.findOne({
+            where: {
+                email: email,
+                status: 'activo'
+            }
+        })
     }
 
     async findAll(){
