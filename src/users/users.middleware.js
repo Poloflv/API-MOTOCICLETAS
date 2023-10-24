@@ -20,10 +20,10 @@ export const protect = catchAsync(async(req,res,next) => {
     if(!token){
         return next(
             new AppError('You are not logged in!, Please log in to get access',401)
-        )
+        );
     }
 
-    const decoded = await promisify (jwt.verify)(
+    const decoded = await promisify(jwt.verify)(
         token,
         envs.SECRET_JWT_SEED,
     )

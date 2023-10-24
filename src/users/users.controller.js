@@ -1,13 +1,13 @@
 import { encryptedPassword, verifyPassword } from "../config/plugins/encripted.password.plugin.js"
 import generateJWT from "../config/plugins/generate-jwt.plugin.js"
-import { AppError,catchAsynch } from "../errors/index.js"
+import { AppError,catchAsync } from "../errors/index.js"
 import { UserService } from "./users.service.js"
 import { validateLogin,validateRegister } from "./user.schema.js"
 
 
 const userService = new UserService();
 
-export const login = catchAsynch(async(req,res,next) => {
+export const login = catchAsync(async(req,res,next) => {
     const {hasError,errorMessages,userData} = validateLogin(req.body)
 
     if(hasError){
@@ -45,7 +45,7 @@ export const login = catchAsynch(async(req,res,next) => {
     })
 })
 
-export const register = catchAsynch(async(req,res,next) => {
+export const register = catchAsync(async(req,res,next) => {
     const {hasError,errorMessages,userData} = validateRegister(req.body)
 
     if(hasError){
@@ -70,7 +70,7 @@ export const register = catchAsynch(async(req,res,next) => {
     })
 })
 //TODO: si falla cambiar el findAllUser, el createUser y el findOneUser
-export const findAllUser = catchAsynch( async(req, res,next) => {
+export const findAllUser = catchAsync( async(req, res,next) => {
     // try {
 
 
@@ -82,7 +82,7 @@ export const findAllUser = catchAsynch( async(req, res,next) => {
     // }
 })
 
-export const createUser = catchAsynch( async(req,res,next) => {
+export const createUser = catchAsync( async(req,res,next) => {
     // try {
         const user = await userService.create(req.body);
 
@@ -92,7 +92,7 @@ export const createUser = catchAsynch( async(req,res,next) => {
     // }
 })
 
-export const findOneUser = catchAsynch( async(req,res,next) => {
+export const findOneUser = catchAsync( async(req,res,next) => {
         const {user} = req;
 
         return res.status(200).json(user)
@@ -101,7 +101,7 @@ export const findOneUser = catchAsynch( async(req,res,next) => {
     // }
 })
 
-export const updateUser = catchAsynch( async(req,res,next) => {
+export const updateUser = catchAsync( async(req,res,next) => {
 
         const {user} = req;
 
@@ -113,7 +113,7 @@ export const updateUser = catchAsynch( async(req,res,next) => {
     // }
 })
 
-export const deleteUser = catchAsynch(async(req,res,next) => {
+export const deleteUser = catchAsync(async(req,res,next) => {
 
         const { user } = req;
 

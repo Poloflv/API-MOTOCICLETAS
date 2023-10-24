@@ -1,3 +1,4 @@
+import User from "../users/users.model.js";
 import Repair from "./repairs.model.js";
 
 
@@ -7,7 +8,13 @@ export class RepairService {
             where: {
                 status: 'pending',
                 id,
-            }
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['name', 'email','id']
+                }
+            ]
         })
 
     }
@@ -18,7 +25,20 @@ export class RepairService {
                 status: "pending"
             }
         })
+    }
 
+    async findAllWithllData(){
+        return await Repair.findAll({
+            where: {
+                status: ["pending","completed"],
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['name', 'email','id']
+                }
+            ]
+        })
     }
 
     async create(data) {

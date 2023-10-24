@@ -4,7 +4,7 @@ const repairService = new RepairService()
 
 export const findAllRepair = async(req, res) => {
     try {
-        const repairs = await repairService.findAll()
+        const repairs = await repairService.findAllWithllData()
 
         return res.status(200).json(repairs)
     } catch (error) {

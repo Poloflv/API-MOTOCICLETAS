@@ -6,7 +6,7 @@ export const router = express.Router()
 
 router.post('/login', login)
 
-router,post('/register', register)
+router.post('/register', register)
 
 //TODO: hacer la logica de programacion de la parte de change-password
 
@@ -16,7 +16,7 @@ router.route("/")
 
 router.route("/:id")
     .get(findOneUser)
-    .patch(updateUser)
-    .delete(protect,restricTo('jefe','empleado'),validateExistUser,protectAccountOwner,deleteUser)
+    .patch(protect, restricTo('usuario','empleado'), updateUser)
+    .delete(protect,restricTo('jefe','usuario','empleado'),validateExistUser,protectAccountOwner,deleteUser)
     // .delete(deleteUser)
 
